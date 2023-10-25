@@ -111,3 +111,95 @@ unsigned InputMark()
 		}
 	}
 }
+
+Student InputStudent(std::list<Student>& otherStudents)
+{
+	std::string nameOfNewstudent = "";
+	std::string passwordOfNewStudent = "";
+	unsigned idOfNewStudent = -1;
+
+	do
+	{
+		auto newStudent = otherStudents.begin();
+
+		bool ifCorrectstudentDats = true;
+
+		std::cout << "->Enter new student data:\n";
+
+		std::cout << "1. Enter student name: ";
+		std::cin >> nameOfNewstudent;
+		
+		std::cout << "2. Enter student password: ";
+		std::cin >> passwordOfNewStudent;
+
+		std::cout << "3. Enter student id: ";
+		std::cin >> idOfNewStudent;
+
+
+		for (size_t i = 0; i < otherStudents.size(); i++)
+		{
+			if ((*newStudent).GetPassword() == passwordOfNewStudent || (*newStudent).GetId() == idOfNewStudent)
+			{
+				ifCorrectstudentDats = false;
+			}
+			++newStudent;
+		}
+
+		if (ifCorrectstudentDats)
+		{
+			return Student(nameOfNewstudent, passwordOfNewStudent, idOfNewStudent);
+		}
+		else
+		{
+			system("cls");
+			std::cout << "-! Inncorrect password or id, enter again.\n";
+		}
+
+	} while (true);
+}
+
+Teacher InputTeacher(std::list<Teacher>& otherTeachers)
+{
+	std::string nameOfNewTeacher = "";
+	std::string passwordOfNewTeacher = "";
+	unsigned idOfNewTeacher = -1;
+
+	do
+	{
+		auto newTeacher = otherTeachers.begin();
+		bool ifCorrectstudentDats = true;
+
+		std::cout << "->Enter new student data:\n";
+
+		std::cout << "1. Enter teacher name: ";
+		std::cin >> nameOfNewTeacher;
+
+		std::cout << "2. Enter teacher password: ";
+		std::cin >> passwordOfNewTeacher;
+
+		std::cout << "3. Enter teacher id: ";
+		std::cin >> idOfNewTeacher;
+
+
+		for (size_t i = 0; i < otherTeachers.size(); i++)
+		{
+			if ((*newTeacher).GetPassword() == passwordOfNewTeacher || (*newTeacher).GetId() == idOfNewTeacher)
+			{
+				ifCorrectstudentDats = false;
+			}
+			++newTeacher;
+		}
+
+		if (ifCorrectstudentDats)
+		{
+			return Teacher(nameOfNewTeacher, passwordOfNewTeacher, idOfNewTeacher);
+		}
+		else
+		{
+			system("cls");
+			std::cout << "-! Inncorrect password or id, enter again.\n";
+		}
+
+	} while (true);
+}
+

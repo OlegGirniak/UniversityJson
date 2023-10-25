@@ -1,6 +1,6 @@
 ﻿  Group.cpp
-  Student.cpp
+  Rector.cpp
   Teacher.cpp
-  UniversityJSON.cpp
+  University.cpp
   Generating Code...
-  UniversityJSON.vcxproj -> D:\BloganC++\OOP\Projects\UniversityJSON\x64\Debug\UniversityJSON.exe
+  UniversityJSON.vcxproj -> F:\OOPProjects\UniversityJson\x64\Debug\UniversityJSON.exe

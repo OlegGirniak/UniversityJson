@@ -14,11 +14,12 @@ public:
 	Group(Teacher* teacher, unsigned id) : teacher(teacher), id(id) { }
 
 	bool AddTeacher(Teacher* teacher);
-	bool AddStudent(Student student);
+	void AddStudent(Student& student);
 
 	unsigned GetId() const { return id; }
 	std::list<Student>& GetStudents() { return students; }
-	void ShowInfo() const;
+
+	void ShowInfo();
 
 };
 

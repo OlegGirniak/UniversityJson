@@ -10,24 +10,16 @@ void Teacher::AddMarkForStudent(std::list<Group>& groups)
 	(*student).AddMarks(mark);
 }
 
+void Teacher::AddStudent()
+{
+	auto group = GetGroupById(groups);
+
+	Student	newStudent = InputStudent((*group).GetStudents());
+
+	(*group).AddStudent(newStudent);
+}
+
 void Teacher::ShowInfo()
 {
-	std::cout << "- - Teacher - -\n";
-	Person::ShowInfo();
-	std::cout << "Groups: ";
-
-	if (groups.size() > 0)
-	{
-		auto iterator = groups.begin();
-		for (size_t i = 0; i < groups.size() - 1; i++)
-		{
-			std::cout << *iterator << ", ";
-			++iterator;
-		}
-		std::cout << *iterator << ".\n" << std::endl;
-	}
-	else
-	{
-		std::cout << " empty\n\n";
-	}
+	std::cout << "- Teacher -\n Name: " << name << "\nPassword: " << password << "\nId: " << id << std::endl;
 }

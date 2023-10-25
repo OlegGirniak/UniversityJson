@@ -129,16 +129,20 @@
   <ItemGroup>
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Rector.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="Teacher.cpp" />
+    <ClCompile Include="University.cpp" />
     <ClCompile Include="UniversityJSON.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Group.h" />
     <ClInclude Include="InputIdFunctions.h" />
     <ClInclude Include="Person.h" />
+    <ClInclude Include="Rector.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Teacher.h" />
+    <ClInclude Include="University.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

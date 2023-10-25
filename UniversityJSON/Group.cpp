@@ -10,23 +10,26 @@ bool Group::AddTeacher(Teacher* teacher)
 	return false;
 }
 
-bool Group::AddStudent(Student student)
+void Group::AddStudent(Student& student)
 {
-	if (students.size() == 0)
+	students.push_back(student);
+}
+
+void Group::ShowInfo()
+{
+	std::cout << "- - Group id: " << id << std::endl;
+
+	if (teacher != nullptr)
 	{
-		students.push_back(student);
-		return true;
+		teacher->ShowInfo();
 	}
 
-	auto iterator = students.begin();
-	for (size_t i = 0; i < students.size(); i++)
+	auto currentStudent = students.begin();
+	if (!students.empty())
 	{
-		if ((*iterator).GetId() == student.GetId())
+		for (size_t i = 0; i < students.size(); i++)
 		{
-			return false;
+			(*currentStudent).ShowInfo();
 		}
 	}
-
-	students.push_back(student);
-	return true;
 }

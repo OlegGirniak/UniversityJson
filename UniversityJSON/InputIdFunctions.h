@@ -4,7 +4,7 @@
 #include "Student.h"
 #include "Teacher.h"
 
-std::list<Group>::iterator GetGroupById(std::list<Group>& groups)
+inline std::list<Group>::iterator GetGroupById(std::list<Group>& groups)
 {
 	if (groups.empty())
 	{
@@ -23,23 +23,21 @@ std::list<Group>::iterator GetGroupById(std::list<Group>& groups)
 	while (true)
 	{
 		std::cout << "Groups id: ";
-		auto iterator = groups.begin();
-		for (size_t i = 0; i < groups.size(); i++)
+		//auto iterator = groups.begin();
+
+		for (auto it = groups.begin(); it !=  groups.end(); it++)
 		{
-			std::cout << (*iterator).GetId() << ", ";
-			++iterator;
+			std::cout << (*it).GetId() << ", ";
 		}
-		std::cout << (*iterator).GetId() << ".\n";
-		iterator = groups.begin();
 
 		std::cout << "-> enter group id: ";
 		std::cin >> groupId;
 
-		for (size_t i = 0; i < groups.size(); i++)
+		for (auto it = groups.begin(); it != groups.end(); it++)
 		{
-			if ((*iterator).GetId() == groupId)
+			if ((*it).GetId() == groupId)
 			{
-				return iterator;
+				return it;
 			}
 		}
 		system("cls");
@@ -47,7 +45,7 @@ std::list<Group>::iterator GetGroupById(std::list<Group>& groups)
 	}
 }
 
-std::list<Student>::iterator GetStudentById(std::list<Group>& groups)
+inline std::list<Student>::iterator GetStudentById(std::list<Group>& groups)
 {
 	auto group = GetGroupById(groups);
 	std::list<Student>& students = (*group).GetStudents();
@@ -92,7 +90,46 @@ std::list<Student>::iterator GetStudentById(std::list<Group>& groups)
 	}
 }
 
-unsigned InputMark()
+inline std::list<Teacher>::iterator GetTeacherById(std::list<Teacher>& teachers)
+{
+	if (teachers.empty())
+	{
+		try
+		{
+			throw std::exception("Teachers is empty.\n");
+		}
+		catch (const std::exception& exc)
+		{
+			std::cout << exc.what();
+			exit(-1);
+		}
+	}
+
+	unsigned teacherId;
+	while (true)
+	{
+		std::cout << "Teacher id: ";
+		for (auto it = teachers.begin(); it != teachers.end(); it++)
+		{
+			std::cout << (*it).GetId() << ", ";
+		}
+
+		std::cout << "-> enter teacher id: ";
+		std::cin >> teacherId;
+
+		for (auto it = teachers.begin(); it != teachers.end(); it++)
+		{
+			if ((*it).GetId() == teacherId)
+			{
+				return it;
+			}
+		}
+		system("cls");
+		std::cout << "-! Inncorrect teachers id, enter again.\n";
+	}
+}
+
+inline unsigned InputMark()
 {
 	unsigned mark;
 	while (true)
@@ -112,7 +149,7 @@ unsigned InputMark()
 	}
 }
 
-Student InputStudent(std::list<Student>& otherStudents)
+ inline Student InputStudent(std::list<Student>& otherStudents)
 {
 	std::string nameOfNewstudent = "";
 	std::string passwordOfNewStudent = "";
@@ -158,7 +195,7 @@ Student InputStudent(std::list<Student>& otherStudents)
 	} while (true);
 }
 
-Teacher InputTeacher(std::list<Teacher>& otherTeachers)
+inline Teacher InputTeacher(std::list<Teacher>& otherTeachers)
 {
 	std::string nameOfNewTeacher = "";
 	std::string passwordOfNewTeacher = "";
@@ -203,3 +240,36 @@ Teacher InputTeacher(std::list<Teacher>& otherTeachers)
 	} while (true);
 }
 
+inline Group InputGroup(std::list<Group>& groups)
+{
+	unsigned newGroupId = -1;
+
+	auto currentGroup = groups.begin();
+	while (true)
+	{
+		bool ifCorrectGroup = true;
+
+		std::cout << "Enter id of new group: ";
+		std::cin >> newGroupId;
+
+		for (size_t i = 0; i < groups.size(); i++)
+		{
+			if ((*currentGroup).GetId() == newGroupId)
+			{
+				ifCorrectGroup = false;
+			}
+		}
+
+		if (!ifCorrectGroup)
+		{
+			system("cls");
+			std::cout << "-! inncorrect id, enter again.\n";
+		}
+		else
+		{
+			break;
+		}
+	}
+
+	return Group(nullptr, newGroupId);
+}

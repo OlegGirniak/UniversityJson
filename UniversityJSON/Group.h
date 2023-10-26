@@ -18,6 +18,7 @@ public:
 
 	unsigned GetId() const { return id; }
 	std::list<Student>& GetStudents() { return students; }
+	Teacher* GetTeacher() { return teacher; }
 
 	void ShowInfo();
 

@@ -13,5 +13,10 @@ class University
 
 public:
 
+	Rector& GetRector() { return rector; }
+	std::list<Teacher>& GetStudents() { return teachers; }
+	std::list<Group>& GetGroups() { return groups; }
+	std::list<Teacher>& GetTeachers() { return teachers; }
+	
 };
 

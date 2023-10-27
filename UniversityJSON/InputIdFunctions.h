@@ -22,15 +22,16 @@ inline std::list<Group>::iterator GetGroupById(std::list<Group>& groups)
 	unsigned groupId;
 	while (true)
 	{
-		std::cout << "Groups id: ";
+		std::cout << "\t-> Groups id: ";
 		//auto iterator = groups.begin();
 
 		for (auto it = groups.begin(); it !=  groups.end(); it++)
 		{
 			std::cout << (*it).GetId() << ", ";
 		}
+		std::cout << std::endl;
 
-		std::cout << "-> enter group id: ";
+		std::cout << "\t-> Enter group id: ";
 		std::cin >> groupId;
 
 		for (auto it = groups.begin(); it != groups.end(); it++)
@@ -41,52 +42,34 @@ inline std::list<Group>::iterator GetGroupById(std::list<Group>& groups)
 			}
 		}
 		system("cls");
-		std::cout << "-! Inncorrect group id, enter again.\n";
+		std::cout << "\t-! Inncorrect group id, enter again.\n";
 	}
 }
 
-inline std::list<Student>::iterator GetStudentById(std::list<Group>& groups)
+inline std::list<Student>::iterator GetStudentById(std::list<Student>& students)
 {
-	auto group = GetGroupById(groups);
-	std::list<Student>& students = (*group).GetStudents();
-
-	if (students.empty())
-	{
-		try
-		{
-			throw std::exception("Group is empty.\n");
-		}
-		catch (const std::exception& exc)
-		{
-			std::cout << exc.what();
-			exit(-1);
-		}
-	}
-
 	unsigned studentId;
 	while (true)
 	{
-		std::cout << "-Student id: ";
-		auto iterator = students.begin();
-		for (size_t i = 0; i < students.size() - 1; i++)
+		std::cout << "\t<- Students id: ";
+		for (auto student = students.begin(); student != students.end(); student++)
 		{
-			std::cout << (*iterator).GetId() << ", ";
-			++iterator;
+			std::cout << (*student).GetId() << "   ";
 		}
-		std::cout << (*iterator).GetId() << "\n";
+		std::cout << std::endl;
 
-		std::cout << "-> enter student id: ";
+		std::cout << "\t-> Enter student id: ";
 		std::cin >> studentId;
 
-		for (size_t i = 0; i < groups.size(); i++)
+		for (auto student = students.begin(); student != students.end(); student++)
 		{
-			if ((*iterator).GetId() == studentId)
+			if ((*student).GetId() == studentId)
 			{
-				return iterator;
+				return student;
 			}
 		}
-		system("cls");
-		std::cout << "-! Inncorrect student id, enter again.\n";
+
+		std::cout << "\t-! Inncorret student id, enter again.\n";
 	}
 }
 
@@ -96,7 +79,7 @@ inline std::list<Teacher>::iterator GetTeacherById(std::list<Teacher>& teachers)
 	{
 		try
 		{
-			throw std::exception("Teachers is empty.\n");
+			throw std::exception("\n-! Teachers is empty.\n");
 		}
 		catch (const std::exception& exc)
 		{
@@ -108,13 +91,13 @@ inline std::list<Teacher>::iterator GetTeacherById(std::list<Teacher>& teachers)
 	unsigned teacherId;
 	while (true)
 	{
-		std::cout << "Teacher id: ";
+		std::cout << "\t->Teacher id: ";
 		for (auto it = teachers.begin(); it != teachers.end(); it++)
 		{
 			std::cout << (*it).GetId() << ", ";
 		}
 
-		std::cout << "-> enter teacher id: ";
+		std::cout << "\t-> Enter teacher id: ";
 		std::cin >> teacherId;
 
 		for (auto it = teachers.begin(); it != teachers.end(); it++)
@@ -125,7 +108,7 @@ inline std::list<Teacher>::iterator GetTeacherById(std::list<Teacher>& teachers)
 			}
 		}
 		system("cls");
-		std::cout << "-! Inncorrect teachers id, enter again.\n";
+		std::cout << "\t-! Inncorrect teachers id, enter again.\n";
 	}
 }
 
@@ -134,7 +117,7 @@ inline unsigned InputMark()
 	unsigned mark;
 	while (true)
 	{
-		std::cout << "-> enter mark: ";
+		std::cout << "\t-> Enter mark: ";
 		std::cin >> mark;
 
 		if (mark > 0 && mark < 13)
@@ -144,7 +127,7 @@ inline unsigned InputMark()
 		else
 		{
 			system("cls");
-			std::cout << "-! Inncorrect mark, enter again.\n";
+			std::cout << "\t-! Inncorrect mark, enter again.\n";
 		}
 	}
 }
@@ -161,15 +144,15 @@ inline unsigned InputMark()
 
 		bool ifCorrectstudentDats = true;
 
-		std::cout << "->Enter new student data:\n";
+		std::cout << "\t->Enter new student data:\n";
 
-		std::cout << "1. Enter student name: ";
+		std::cout << "\t1. Enter student name: ";
 		std::cin >> nameOfNewstudent;
 		
-		std::cout << "2. Enter student password: ";
+		std::cout << "\t2. Enter student password: ";
 		std::cin >> passwordOfNewStudent;
 
-		std::cout << "3. Enter student id: ";
+		std::cout << "\t3. Enter student id: ";
 		std::cin >> idOfNewStudent;
 
 
@@ -189,7 +172,7 @@ inline unsigned InputMark()
 		else
 		{
 			system("cls");
-			std::cout << "-! Inncorrect password or id, enter again.\n";
+			std::cout << "\t-! Inncorrect password or id, enter again.\n";
 		}
 
 	} while (true);
@@ -206,15 +189,15 @@ inline Teacher InputTeacher(std::list<Teacher>& otherTeachers)
 		auto newTeacher = otherTeachers.begin();
 		bool ifCorrectstudentDats = true;
 
-		std::cout << "->Enter new student data:\n";
+		std::cout << "\t->Enter new teacher data:\n";
 
-		std::cout << "1. Enter teacher name: ";
+		std::cout << "\t1. Enter teacher name: ";
 		std::cin >> nameOfNewTeacher;
 
-		std::cout << "2. Enter teacher password: ";
+		std::cout << "\t2. Enter teacher password: ";
 		std::cin >> passwordOfNewTeacher;
 
-		std::cout << "3. Enter teacher id: ";
+		std::cout << "\t3. Enter teacher id: ";
 		std::cin >> idOfNewTeacher;
 
 
@@ -234,7 +217,7 @@ inline Teacher InputTeacher(std::list<Teacher>& otherTeachers)
 		else
 		{
 			system("cls");
-			std::cout << "-! Inncorrect password or id, enter again.\n";
+			std::cout << "\t-! Inncorrect password or id, enter again.\n";
 		}
 
 	} while (true);
@@ -249,7 +232,7 @@ inline Group InputGroup(std::list<Group>& groups)
 	{
 		bool ifCorrectGroup = true;
 
-		std::cout << "Enter id of new group: ";
+		std::cout << "\t->Enter id of new group: ";
 		std::cin >> newGroupId;
 
 		for (size_t i = 0; i < groups.size(); i++)
@@ -263,7 +246,7 @@ inline Group InputGroup(std::list<Group>& groups)
 		if (!ifCorrectGroup)
 		{
 			system("cls");
-			std::cout << "-! inncorrect id, enter again.\n";
+			std::cout << "\t-! inncorrect id, enter again.\n";
 		}
 		else
 		{

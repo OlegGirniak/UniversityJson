@@ -13,7 +13,7 @@ public:
 	Group() : teacher(nullptr), id(0) { }
 	Group(Teacher* teacher, unsigned id) : teacher(teacher), id(id) { }
 
-	bool AddTeacher(Teacher* teacher);
+	void AddTeacher(Teacher* teacher);
 	void AddStudent(Student& student);
 
 	unsigned GetId() const { return id; }

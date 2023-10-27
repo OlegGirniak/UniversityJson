@@ -1,13 +1,8 @@
 #include "Group.h"
 
-bool Group::AddTeacher(Teacher* teacher)
+void Group::AddTeacher(Teacher* teacher)
 {
-	if (this->teacher != nullptr && this->teacher != teacher)
-	{
-		this->teacher = teacher;
-		return true;
-	}
-	return false;
+	this->teacher = teacher;
 }
 
 void Group::AddStudent(Student& student)
@@ -17,19 +12,27 @@ void Group::AddStudent(Student& student)
 
 void Group::ShowInfo()
 {
-	std::cout << "- - Group id: " << id << std::endl;
+	std::cout << " - - Group - -\n Id: " << id << std::endl;
 
 	if (teacher != nullptr)
 	{
+		std::cout << "__Head Teacher__\n";
 		teacher->ShowInfo();
 	}
+	else
+	{
+		std::cout << " - - Head Teacher Empty - - \n";
+	}
 
-	auto currentStudent = students.begin();
 	if (!students.empty())
 	{
-		for (size_t i = 0; i < students.size(); i++)
+		for (auto it = students.begin(); it != students.end(); it++)
 		{
-			(*currentStudent).ShowInfo();
+			(*it).ShowInfo();
 		}
+	}
+	else
+	{
+		std::cout << " - - Students Empty - - \n";
 	}
 }

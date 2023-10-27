@@ -7,15 +7,15 @@ int main()
 
 	auto rector = university.GetRector();
 
-	rector.AddGroup(university.GetGroups());
+	std::list<Group>& groups = university.GetGroups();
+	std::list<Teacher>& teachers = university.GetTeachers();
 
-	rector.AddTeacherInUniversity(university.GetTeachers());
+	rector.AddTeacherInUniversity(teachers);
+	rector.AddTeacherInUniversity(teachers);
+	//rector.AddTeacherInUniversity(teachers);
 
-	std::cout << "Groups: " << university.GetGroups().size() << std::endl;
-	std::cout << "Teachers: " << university.GetTeachers().size() << std::endl;
-	
+	rector.ShowTeacherInformationById(teachers);
+	rector.ShowTeacherInformationById(teachers);
 
-	rector.AddTeacherForGroup(university.GetGroups(), university.GetTeachers());
-	
 }
 

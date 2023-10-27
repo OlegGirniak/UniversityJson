@@ -5,8 +5,8 @@ void Student::ShowInfo()
 	std::cout << "- - Student - -\n";
 	Person::ShowInfo();
 
-	std::cout << "-Marks: ";
-	if (marks.size() > 0)
+	std::cout << "- Marks: ";
+	if (!marks.empty())
 	{
 		auto iterator = marks.begin();
 		for (size_t i = 0; i < marks.size() - 1; i++)

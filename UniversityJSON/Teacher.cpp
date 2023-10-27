@@ -3,11 +3,15 @@
 
 void Teacher::AddMarkForStudent(std::list<Group>& groups)
 {
-	auto student = GetStudentById(groups);
+	auto group = GetGroupById(groups);
 
-	unsigned mark = InputMark();
+	auto student = GetStudentById((*group).GetStudents());
 
-	(*student).AddMarks(mark);
+	unsigned newMark = InputMark();
+
+	(*student).AddMarks(newMark);
+
+	std::cout << "\t + Mark is added.\n";
 }
 
 void Teacher::AddStudent()
@@ -21,5 +25,6 @@ void Teacher::AddStudent()
 
 void Teacher::ShowInfo()
 {
-	std::cout << "- Teacher -\n Name: " << name << "\nPassword: " << password << "\nId: " << id << std::endl;
+	std::cout << "- - Teacher - -\n";
+	Person::ShowInfo();
 }

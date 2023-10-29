@@ -22,8 +22,7 @@ void Student::ShowInfo()
 	}
 }
 
-bool Student::AddMarks(unsigned mark)
+void Student::AddMarks(unsigned mark)
 {
 	marks.push_back(mark);
-	return true;
 }

@@ -22,7 +22,6 @@ public:
 
 	//delete methods
 
-
 	//show methods
 	void ShowAllInformation(std::list<Teacher>& teachers, std::list<Group>& groups);
 	void ShowAllInformation(std::list<Group>& groups, std::list<Teacher>& teachers);

@@ -14,6 +14,11 @@ public:
 	std::list<int> GetMarks() const { return marks; }
 	
 	void ShowInfo();
-	bool AddMarks(unsigned mark);
+	void AddMarks(unsigned mark);
+
+	friend bool operator==(const Student& other1, const Student& other2)
+	{
+		return other1.id == other2.id;
+	}
 };
 

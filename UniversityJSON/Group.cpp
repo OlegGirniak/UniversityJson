@@ -10,6 +10,12 @@ void Group::AddStudent(Student& student)
 	students.push_back(student);
 }
 
+void Group::DeleteStudent(Student& student)
+{
+	students.remove(student);
+}
+
+
 void Group::ShowInfo()
 {
 	std::cout << " - - Group - -\n Id: " << id << std::endl;
@@ -36,3 +42,5 @@ void Group::ShowInfo()
 		std::cout << " - - Students Empty - - \n";
 	}
 }
+
+

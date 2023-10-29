@@ -16,11 +16,15 @@ public:
 	void AddTeacher(Teacher* teacher);
 	void AddStudent(Student& student);
 
+	void DeleteStudent(Student& student);
+
 	unsigned GetId() const { return id; }
 	std::list<Student>& GetStudents() { return students; }
 	Teacher* GetTeacher() { return teacher; }
 
 	void ShowInfo();
+
+
 
 };
 

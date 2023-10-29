@@ -22,5 +22,4 @@ public:
 	unsigned GetId() const { return id; }
 
 	void ShowInfo();
-
 };

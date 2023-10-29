@@ -11,7 +11,6 @@ class Rector : public Person
 public:
 	Rector() : Person("rector", "rector", 1) { }
 
-
 	//add methods
 	void AddGroup(std::list<Group>& groups);
 	void AddTeacherForGroup(std::list<Group>& groups, std::list<Teacher>& teachers);
@@ -21,6 +20,10 @@ public:
 	void AddMarkForStudent(std::list<Group>& groups);
 
 	//delete methods
+	void DeleteGroup(std::list<Group>& groups);
+	void DeleteTeacher(std::list<Teacher>& teachers, std::list<Group>& groups);
+	void DeleteStudent(std::list<Group>& groups);
+	void DeleteMarkFodStudent(std::list<Group>& groups);
 
 	//show methods
 	void ShowAllInformation(std::list<Teacher>& teachers, std::list<Group>& groups);

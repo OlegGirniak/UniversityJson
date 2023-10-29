@@ -19,6 +19,13 @@ public:
 	void AddGroup(Group newGroup);
 
 
+	void DeleteMarkForStudent();
+
 	void ShowInfo();
+
+	friend bool operator==(const Teacher& teacher, const Teacher& other)
+	{
+		return teacher.id == other.id;
+	}
 };
 

@@ -9,7 +9,14 @@ int main()
 	std::list<Group>& groups = university.GetGroups();
 	std::list<Teacher>& teachers = university.GetTeachers();
 
-	
+	rector.AddGroup(groups);
 
+	rector.AddTeacherInUniversity(teachers);
+
+	rector.AddTeacherForGroup(groups, teachers);
+
+	rector.DeleteTeacher(teachers, groups);
+
+	rector.ShowGroupInformationById(groups);
 }
 

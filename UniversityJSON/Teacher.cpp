@@ -41,6 +41,42 @@ void Teacher::AddGroup(Group newGroup)
 	groups.push_back(newGroup);
 }
 
+void Teacher::DeleteMarkForStudent()
+{
+	std::cout << "\tDELETE MARK  FOR STUDENT\n";
+
+	if (groups.empty())
+	{
+		std::cout << "\tUniversity is empty.\n";
+	}
+	else
+	{
+		auto group = GetGroupById(groups);
+
+		if ((*group).GetStudents().empty())
+		{
+			std::cout << "\t -! Group is empty";
+		}
+		else
+		{
+			auto student = GetStudentById((*group).GetStudents());
+
+			if ((*student).GetMarks().empty())
+			{
+				std::cout << "\t -! Students has not marks\n";
+			}
+			else
+			{
+				auto deleteMark = InputMark();
+
+				(*student).GetMarks().remove(deleteMark);
+
+				std::cout << "\t + Mark is deleted\n";
+			}
+		}
+	}
+}
+
 void Teacher::ShowInfo()
 {
 	std::cout << "- - Teacher - -\n";

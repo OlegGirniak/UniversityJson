@@ -8,41 +8,37 @@ inline std::list<Group>::iterator GetGroupById(std::list<Group>& groups)
 {
 	if (groups.empty())
 	{
-		try
-		{
-			throw std::exception("University is empty.\n");
-		}
-		catch (const std::exception& exc)
-		{
-			std::cout << exc.what();
-			exit(-1);
-		}
+		std::cout << "\t -! Univerasity is emty.\n";
+
 	}
-
-	unsigned groupId;
-	while (true)
+	else
 	{
-		std::cout << "\t-> Groups id: ";
-		//auto iterator = groups.begin();
-
-		for (auto it = groups.begin(); it !=  groups.end(); it++)
+		std::cout << "\t - - Choose group by ID - -\n";
+		unsigned groupId;
+		while (true)
 		{
-			std::cout << (*it).GetId() << ", ";
-		}
-		std::cout << std::endl;
+			std::cout << "\t-> Groups id: ";
+			//auto iterator = groups.begin();
 
-		std::cout << "\t-> Enter group id: ";
-		std::cin >> groupId;
-
-		for (auto it = groups.begin(); it != groups.end(); it++)
-		{
-			if ((*it).GetId() == groupId)
+			for (auto it = groups.begin(); it != groups.end(); it++)
 			{
-				return it;
+				std::cout << (*it).GetId() << ", ";
 			}
+			std::cout << std::endl;
+
+			std::cout << "\t-> Enter group id: ";
+			std::cin >> groupId;
+
+			for (auto it = groups.begin(); it != groups.end(); it++)
+			{
+				if ((*it).GetId() == groupId)
+				{
+					return it;
+				}
+			}
+			system("cls");
+			std::cout << "\t-! Inncorrect group id, enter again.\n";
 		}
-		system("cls");
-		std::cout << "\t-! Inncorrect group id, enter again.\n";
 	}
 }
 

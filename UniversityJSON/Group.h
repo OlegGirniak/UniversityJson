@@ -24,7 +24,10 @@ public:
 
 	void ShowInfo();
 
-
+	friend bool operator==(const Group& group, const Group& other)
+	{
+		return group.id == other.id;
+	}
 
 };
 

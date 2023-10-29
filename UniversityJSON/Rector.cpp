@@ -238,6 +238,121 @@ void Rector::AddMarkForStudent(std::list<Group>& groups)
 	std::cout << "\t + Mark is added.\n";
 }
 
+void Rector::DeleteGroup(std::list<Group>& groups)
+{
+	std::cout << "\tDELETE GROUP\n";
+
+	if(groups.empty())
+	{
+		std::cout << "\t-! University is empty.\n";
+		
+	}
+	else
+	{
+		std::cout << "\tChoose Group by id:\n";
+		auto deleteGroup = GetGroupById(groups);
+
+		groups.remove(*deleteGroup);
+
+		std::cout << "\t + Group is deleted.\n";
+	}
+}
+
+void Rector::DeleteTeacher(std::list<Teacher>& teachers, std::list<Group>& groups)
+{
+	std::cout << "\tDELETE TEACHER\n";
+
+	if (teachers.empty())
+	{
+		std::cout << "\t-! Teachers is empty.\n";
+		return;
+	}
+	else
+	{
+		std::cout << "\tChoose teacher by id:\n";
+
+		auto teacher = GetTeacherById(teachers);
+
+		for (auto group = groups.begin(); group != groups.end(); group++)
+		{
+			if ((*group).GetTeacher()->GetId() == (*teacher).GetId())
+			{
+				(*group).AddTeacher(nullptr);
+
+				std::cout << "\t ! Group (Id: " << (*group).GetId() << ") has lost teacher.\n";
+				break;
+			}
+		}
+
+		teachers.remove(*teacher);
+
+		std::cout << "\t + Teacher is deleted\n";
+	}
+}
+
+void Rector::DeleteStudent(std::list<Group>& groups)
+{
+	std::cout << "\tDELETE STUDENT\n";
+
+	if (groups.empty())
+	{
+		std::cout << "\tUniversity is empty.\n";	
+	}
+	else
+	{
+		auto group = GetGroupById(groups);
+
+		if ((*group).GetStudents().empty())
+		{
+			std::cout << "\t -! Group is empty";
+		}
+		else
+		{
+			auto deleteStudent = GetStudentById((*group).GetStudents());
+
+			(*group).GetStudents().remove(*deleteStudent);
+
+			std::cout << "\t + Student is deleted\n";
+		}
+	}
+}
+
+void Rector::DeleteMarkFodStudent(std::list<Group>& groups)
+{
+	std::cout << "\tDELETE MARK  FOR STUDENT\n";
+
+	if (groups.empty())
+	{
+		std::cout << "\tUniversity is empty.\n";
+	}
+	else
+	{
+		auto group = GetGroupById(groups);
+
+		if ((*group).GetStudents().empty())
+		{
+			std::cout << "\t -! Group is empty";
+		}
+		else
+		{
+			auto student = GetStudentById((*group).GetStudents());
+
+			if ((*student).GetMarks().empty())
+			{
+				std::cout << "\t -! Students has not marks\n";
+			}
+			else
+			{
+				auto deleteMark = InputMark();
+
+				(*student).GetMarks().remove(deleteMark);
+
+				std::cout << "\t + Mark is deleted\n";
+			}
+		}
+	}
+}
+
 void Rector::ShowGroupInformationById(std::list<Group>& groups)
 {
 	if (!groups.empty())

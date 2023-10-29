@@ -1,2 +1,8 @@
-﻿  UniversityJSON.cpp
+﻿  Group.cpp
+  Rector.cpp
+  Teacher.cpp
+  University.cpp
+  UniversityJSON.cpp
+  Generating Code...
+  LINK : F:\OOPProjects\UniversityJson\x64\Debug\UniversityJSON.exe not found or not built by the last incremental link; performing full link
   UniversityJSON.vcxproj -> F:\OOPProjects\UniversityJson\x64\Debug\UniversityJSON.exe

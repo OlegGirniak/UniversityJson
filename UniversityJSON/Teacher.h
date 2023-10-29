@@ -14,8 +14,9 @@ public:
 
 	std::list<Group>& GetGroups() { return groups; }
 
-	void AddMarkForStudent(std::list<Group>& group);
-	void AddStudent();
+	void AddMarkForStudent();
+	void AddStudentInUniversity();
+	void AddGroup(Group newGroup);
 
 	void ShowInfo();
 };

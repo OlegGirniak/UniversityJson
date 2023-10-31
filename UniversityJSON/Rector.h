@@ -13,8 +13,8 @@ public:
 
 	//add methods
 	void AddGroup(std::list<Group>& groups);
-	void AddTeacherForGroup(std::list<Group>& groups, std::list<Teacher>& teachers);
 	void AddTeacherInUniversity(std::list<Teacher>& teachers);
+	void AddTeacherForGroup(std::list<Group>& groups, std::list<Teacher>& teachers);
 	void AddGroupForTeacher(std::list<Teacher>& teachers, std::list<Group>& groups);
 	void AddStudentInGroup(std::list<Group>& groups);
 	void AddMarkForStudent(std::list<Group>& groups);
@@ -26,11 +26,12 @@ public:
 	void DeleteMarkFodStudent(std::list<Group>& groups);
 
 	//show methods
-	void ShowAllInformation(std::list<Teacher>& teachers, std::list<Group>& groups);
 	void ShowAllInformation(std::list<Group>& groups, std::list<Teacher>& teachers);
 	void ShowGroupInformationById(std::list<Group>& groups);
 	void ShowStudentInformationById(std::list<Group>& groups);
 	void ShowTeacherInformationById(std::list<Teacher>& teachers);
+
+	void Menu() {}
 
 };
 

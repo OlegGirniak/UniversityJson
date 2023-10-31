@@ -59,5 +59,11 @@
     <ClInclude Include="University.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Profession.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserChoice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

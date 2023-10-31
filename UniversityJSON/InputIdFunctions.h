@@ -18,7 +18,6 @@ inline std::list<Group>::iterator GetGroupById(std::list<Group>& groups)
 		while (true)
 		{
 			std::cout << "\t-> Groups id: ";
-			//auto iterator = groups.begin();
 
 			for (auto it = groups.begin(); it != groups.end(); it++)
 			{
@@ -26,7 +25,7 @@ inline std::list<Group>::iterator GetGroupById(std::list<Group>& groups)
 			}
 			std::cout << std::endl;
 
-			std::cout << "\t-> Enter group id: ";
+			std::cout << "\n\t-> Enter group id: ";
 			std::cin >> groupId;
 
 			for (auto it = groups.begin(); it != groups.end(); it++)

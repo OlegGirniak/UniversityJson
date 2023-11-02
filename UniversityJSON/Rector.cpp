@@ -317,7 +317,7 @@ void Rector::DeleteStudent(std::list<Group>& groups)
 	}
 }
 
-void Rector::DeleteMarkFodStudent(std::list<Group>& groups)
+void Rector::DeleteMarkForStudent(std::list<Group>& groups)
 {
 	std::cout << "\tDELETE MARK  FOR STUDENT\n";
 
@@ -403,3 +403,29 @@ void Rector::ShowTeacherInformationById(std::list<Teacher>& teachers)
 		std::cout << "\t-! Teachers is empty.\n";
 	}
 }
+
+UserChoice Rector::Menu()
+{
+	std::cout << " __RECTOR__MENU__\n";
+
+	std::cout << "1 - Add groups in university.\n2 - Add teacher in university.\n3 - Add teacher for group.\n4 - Add student in group.\n5 - Add mark for student.\n";
+	std::cout << "6 - Show all information.\n7 - Show group information.\n8 - Show teachers information.\n9 - Show students information.\n";
+	std::cout << "10 - Delete group.\n11 - Delete teachers.\n12 - Delete student.\n13 - Delete mark.\n14 - Exit.\n";
+
+	while (true)
+	{
+		std::cout << "-> Enter choice: ";
+		int userChoice;
+		std::cin >> userChoice;
+
+		if (userChoice > 0 && userChoice < 15)
+		{
+			return static_cast<UserChoice>(userChoice);
+		}
+		else
+		{
+			std::cout << "-! Wrong choice, enter again\n";
+		}
+	}
+}
+

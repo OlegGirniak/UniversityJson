@@ -127,82 +127,76 @@ inline unsigned InputMark()
 	}
 }
 
- inline Student InputStudent(std::list<Group>& groups)
+inline Student InputStudent(std::list<Group>& groups)
 {
-	 std::string newStudentPassword = "";
-	 std::string newStudentName = "";
-	 unsigned idNewStudentId = -1;
+	std::string newStudentPassword = "";
+	std::string newStudentName = "";
+	unsigned idNewStudentId = -1;
 
-	 while (true)
-	 {
+	while (true)
+	{
 
-		 std::cout << "\t-> Enter new student data:\n";
-		 std::cout << "\t-> Enter new student name: ";
+		std::cout << "\t-> Enter new student data:\n";
+		std::cout << "\t-> Enter new student name: ";
 
-		 std::cin >> newStudentName;
+		std::cin >> newStudentName;
 
-		 while (true)
-		 {
-			 bool ifPasswordIsreserved = false;
+		while (true)
+		{
+			bool ifPasswordIsreserved = false;
 
-			 std::cout << "\t-> Enter new student password: ";
-			 std::cin >> newStudentPassword;
+			std::cout << "\t-> Enter new student password: ";
+			std::cin >> newStudentPassword;
 
-			 for (auto group = groups.begin(); group != groups.end(); group++)
-			 {
-				 for (auto student = (*group).GetStudents().begin(); student != (*group).GetStudents().end(); student++)
-				 {
-					 if ((*student).GetPassword() == newStudentPassword)
-					 {
-						 ifPasswordIsreserved = true;
-						 break;
-					 }
-				 }
-			 }
+			for (auto group = groups.begin(); group != groups.end(); group++)
+			{
+				for (auto student = (*group).GetStudents().begin(); student != (*group).GetStudents().end(); student++)
+				{
+					if ((*student).GetPassword() == newStudentPassword)
+					{
+						ifPasswordIsreserved = true;
+						break;
+					}
+				}
+			}
 
-			 if (ifPasswordIsreserved)
-			 {
-				 std::cout << "-! Password is reserved enter again.\n";
-			 }
-			 else
-			 {
-				 break;
-			 }
-		 }
+			if (ifPasswordIsreserved)
+			{
+				std::cout << "-! Password is reserved enter again.\n";
+			}
+			else
+			{
+				while (true)
+				{
+					bool ifIdIsreserved = false;
 
-		 while (true)
-		 {
-			 bool ifIdIsreserved = false;
-
-			 std::cout << "\t-> Enter new student password: ";
-			
-
-			 for (auto group = groups.begin(); group != groups.end(); group++)
-			 {
-				 for (auto student = (*group).GetStudents().begin(); student != (*group).GetStudents().end(); student++)
-				 {
-					 if ((*student).GetId() == idNewStudentId)
-					 {
-						 ifIdIsreserved = true;
-					 }
-				 }
-			 }
-
-			 if (ifIdIsreserved)
-			 {
-				 std::cout << "-! Id is reserved enter again.\n";
-			 }
-			 else
-			 {
-				 break;
-			 }
-		 }
-		 
+					std::cout << "\t-> Enter new student id: ";
+					std::cin  >> idNewStudentId;
 
 
-	 }
+					for (auto group = groups.begin(); group != groups.end(); group++)
+					{
+						for (auto student = (*group).GetStudents().begin(); student != (*group).GetStudents().end(); student++)
+						{
+							if ((*student).GetId() == idNewStudentId)
+							{
+								ifIdIsreserved = true;
+							}
+						}
+					}
 
-	 return Student(newStudentName, newStudentPassword, idNewStudentId);
+					if (ifIdIsreserved)
+					{
+						std::cout << "-! Id is reserved enter again.\n";
+					}
+					else
+					{
+						return Student(newStudentName, newStudentPassword, idNewStudentId);
+					}
+				}
+			}
+		}
+	}
 }
 
 inline Teacher InputTeacher(std::list<Teacher>& otherTeachers)

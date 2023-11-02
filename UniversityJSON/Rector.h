@@ -23,7 +23,7 @@ public:
 	void DeleteGroup(std::list<Group>& groups);
 	void DeleteTeacher(std::list<Teacher>& teachers, std::list<Group>& groups);
 	void DeleteStudent(std::list<Group>& groups);
-	void DeleteMarkFodStudent(std::list<Group>& groups);
+	void DeleteMarkForStudent(std::list<Group>& groups);
 
 	//show methods
 	void ShowAllInformation(std::list<Group>& groups, std::list<Teacher>& teachers);
@@ -31,7 +31,7 @@ public:
 	void ShowStudentInformationById(std::list<Group>& groups);
 	void ShowTeacherInformationById(std::list<Teacher>& teachers);
 
-	void Menu() {}
+	UserChoice Menu();
 
 };
 

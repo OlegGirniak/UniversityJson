@@ -14,6 +14,7 @@ enum class UserChoice
 	DeleteGroup,
 	DeleteTeacher,
 	DeleteStudent,
-	DeleteMarkFodStudent
+	DeleteMarkForStudent,
+	Exit
 };
 

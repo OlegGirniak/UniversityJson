@@ -16,6 +16,5 @@ public:
 	Rector& GetRector() { return rector; }
 	std::list<Group>& GetGroups() { return groups; }
 	std::list<Teacher>& GetTeachers() { return teachers; }
-	
 };
 

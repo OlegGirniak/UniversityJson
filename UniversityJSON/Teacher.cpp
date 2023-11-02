@@ -23,22 +23,51 @@ void Teacher::AddMarkForStudent()
 	std::cout << "\t + Mark is added.\n";
 }
 
-void Teacher::AddStudentInUniversity()
-{
-	std::cout << "\tADD STUDENT IN GROUP\n";
-
-	std::cout << "\tChoose group by id: \n";
-
-	auto group = GetGroupById(groups);
-
-	auto student = InputStudent(groups);
-
-	(*group).AddStudent(student);
-}
-
 void Teacher::AddGroup(Group newGroup)
 {
 	groups.push_back(newGroup);
+}
+
+void Teacher::ShowStudentInformation()
+{
+	std::cout << "_SHOW_STUDENT_INFORMATION_\n";
+
+	if (groups.empty())
+	{
+		std::cout << "Groups is empty.\n";
+	}
+	else
+	{
+		auto group = GetGroupById(groups);
+
+		if ((*group).GetStudents().empty())
+		{
+			std::cout << "Students are empty.\n";
+		}
+		else
+		{
+			auto student = GetStudentById((*group).GetStudents());
+
+			(*student).ShowInfo();
+		}
+	}
+}
+
+void Teacher::ShowGroupInformation()
+{
+	std::cout << "_SHOW_GROUP_INFORMATION_\n";
+
+	if (groups.empty())
+	{
+		std::cout << "Groups is empty.\n";
+	}
+	else
+	{
+		for (auto group = groups.begin(); group != groups.end(); group++)
+		{
+			(*group).ShowInfo();
+		}
+	}
 }
 
 void Teacher::DeleteMarkForStudent()
@@ -91,5 +120,44 @@ void Teacher::ShowInfo()
 			std::cout << (*group).GetId() << "  ";
 		}
 		std::cout << std::endl;
+	}
+}
+
+UserChoice Teacher::Menu()
+{
+	std::cout << " __TEACHER__MENU__\n";
+
+	std::cout << "1 - Show group information.\n2 - Show group information\n3 - Show student information\n4 - Delete mark.\n5 - Exit\n";
+
+	while (true)
+	{
+		std::cout << "-> Enter choice: ";
+		int userChoice;
+		std::cin >> userChoice;
+
+		if (userChoice == 1)
+		{
+			return UserChoice::ShowGroupInformationById;
+		}
+		else if (userChoice == 2) 
+		{
+			return UserChoice::ShowGroupInformationById;
+		}
+		else if (userChoice == 3)
+		{
+			return UserChoice::ShowStudentInformationById;
+		}
+		else if (userChoice == 4)
+		{
+			return UserChoice::DeleteMarkForStudent;
+		}
+		else if (userChoice == 5)
+		{
+			return UserChoice::Exit;
+		}
+		else
+		{
+			std::cout << "-! Wrong choice, enter again\n";
+		}
 	}
 }

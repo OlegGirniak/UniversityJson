@@ -8,7 +8,7 @@ class Group
 	unsigned id;
 	Teacher* teacher;
 	std::list<Student> students;
-	
+
 public:
 	Group() : teacher(nullptr), id(0) { }
 	Group(Teacher* teacher, unsigned id) : teacher(teacher), id(id) { }
@@ -28,6 +28,6 @@ public:
 	{
 		return group.id == other.id;
 	}
-
 };
+
 

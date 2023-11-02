@@ -15,13 +15,15 @@ public:
 	std::list<Group>& GetGroups() { return groups; }
 
 	void AddMarkForStudent();
-	void AddStudentInUniversity();
 	void AddGroup(Group newGroup);
 
-
+	void ShowStudentInformation();
+	void ShowGroupInformation();
 	void DeleteMarkForStudent();
 
 	void ShowInfo();
+
+	UserChoice Menu();
 
 	friend bool operator==(const Teacher& teacher, const Teacher& other)
 	{

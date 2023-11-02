@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "UserChoice.h"
 
 
 class Person
@@ -23,5 +24,5 @@ public:
 
 	void ShowInfo();
 
-	virtual void Menu() { }
+	virtual UserChoice Menu() { return UserChoice::ShowAllInformation; }
 };

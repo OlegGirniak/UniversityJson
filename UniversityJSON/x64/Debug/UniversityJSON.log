@@ -1,12 +1,4 @@
 ﻿E:\MVS2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (UniversityJSON.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Group.cpp
-  Person.cpp
-  Rector.cpp
-  Student.cpp
-  Teacher.cpp
   University.cpp
-  UniversityJSON.cpp
-  Generating Code...
-F:\OOPProjects\UniversityJson\UniversityJSON\InputIdFunctions.h(42): warning C4715: 'GetGroupById': not all control paths return a value
-F:\OOPProjects\UniversityJson\UniversityJSON\InputIdFunctions.h(42): warning C4715: 'GetGroupById': not all control paths return a value
+F:\OOPProjects\UniversityJson\UniversityJSON\University.cpp(48,6): warning C4101: 'indexOfTeachers': unreferenced local variable
   UniversityJSON.vcxproj -> F:\OOPProjects\UniversityJson\x64\Debug\University.exe

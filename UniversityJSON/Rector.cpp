@@ -46,25 +46,6 @@ void Rector::AddGroup(std::list<Group>& groups)
 	}
 }
 
-void Rector::AddTeacherForGroup(std::list<Group>& groups, std::list<Teacher>& teachers)
-{
-	std::cout << "Add teacher for group.\n";
-
-	auto group = GetGroupById(groups);
-
-	if ((*group).GetTeacher() == nullptr )
-	{
-		auto teacher = GetTeacherById(teachers);
-
-		(*group).AddTeacher(&(*teacher));
-	}
-	else
-	{
-		std::cout << "Teacher is reserved in this group\n";
-	}
-
-}
-
 void Rector::AddTeacherInUniversity(std::list<Teacher>& teachers)
 {
 	
@@ -273,17 +254,6 @@ void Rector::DeleteTeacher(std::list<Teacher>& teachers, std::list<Group>& group
 
 		auto teacher = GetTeacherById(teachers);
 
-		for (auto group = groups.begin(); group != groups.end(); group++)
-		{
-			if ((*group).GetTeacher()->GetId() == (*teacher).GetId())
-			{
-				(*group).AddTeacher(nullptr);
-
-				std::cout << "\t ! Group (Id: " << (*group).GetId() << ") has lost teacher.\n";
-				break;
-			}
-		}
-
 		teachers.remove(*teacher);
 
 		std::cout << "\t + Teacher is deleted\n";
@@ -428,4 +398,21 @@ UserChoice Rector::Menu()
 		}
 	}
 }
+
+void Rector::to_json(nlohmann::json& j)
+{
+	j = nlohmann::json{
+		{"name", name},
+		{"password", password},
+		{"id", id}
+	};
+}
+
+void Rector::from_json(nlohmann::json j)
+{
+	id = j["rector"][0]["id"];
+	name = j["rector"][0]["name"];
+	password = j["rector"][0]["password"];
+} 
+
 

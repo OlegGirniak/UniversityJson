@@ -53,3 +53,24 @@ UserChoice Student::Menu()
 		}
 	}
 }
+
+void Student::to_json(nlohmann::json& j)
+{
+	j = nlohmann::json{
+		{"name", name},
+		{"password", password},
+		{"id", id},
+		{"marks", marks}
+	};
+}
+
+void Student::from_json(nlohmann::json& j)
+{
+	j.at("name").get_to(name);
+	j.at("password").get_to(password);
+	j.at("id").get_to(id);
+	j.at("marks").get_to(marks);
+}
+
+
+

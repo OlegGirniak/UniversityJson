@@ -161,3 +161,26 @@ UserChoice Teacher::Menu()
 		}
 	}
 }
+
+void Teacher::to_json(nlohmann::json& teachersJson)
+{
+	teachersJson = nlohmann::json{
+		{"id", id},
+		{"name", name},
+		{"password", password},
+		{"groups", nlohmann::json::array()}
+	};
+	for (auto& group : groups)
+	{
+		nlohmann::json groupJson;
+		group.to_json(groupJson);
+		teachersJson["groups"].push_back(groupJson);
+	}
+
+}
+
+
+void Teacher::from_json(nlohmann::json& j)
+{
+	
+}

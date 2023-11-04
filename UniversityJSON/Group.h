@@ -1,26 +1,24 @@
 #pragma once
 #include "Teacher.h"
 #include "Student.h"
+#include "nlohmann/json.hpp"
 #include <list>
 
 class Group
 {
 	unsigned id;
-	Teacher* teacher;
 	std::list<Student> students;
 
 public:
-	Group() : teacher(nullptr), id(0) { }
-	Group(Teacher* teacher, unsigned id) : teacher(teacher), id(id) { }
+	Group() : id(0) { }
+	Group(Teacher* teacher, unsigned id) : id(id) { }
 
-	void AddTeacher(Teacher* teacher);
 	void AddStudent(Student& student);
 
 	void DeleteStudent(Student& student);
 
 	unsigned GetId() const { return id; }
 	std::list<Student>& GetStudents() { return students; }
-	Teacher* GetTeacher() { return teacher; }
 
 	void ShowInfo();
 
@@ -28,6 +26,9 @@ public:
 	{
 		return group.id == other.id;
 	}
+
+	void to_json(nlohmann::json& j);
+	void from_json(nlohmann::json& j, int indexOfGroup);
 };
 
 

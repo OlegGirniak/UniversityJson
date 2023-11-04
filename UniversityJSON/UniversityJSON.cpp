@@ -1,14 +1,16 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "University.h"
 #include "Profession.h"	
 
 std::pair<Profession, unsigned> LogIn(Rector& rector, std::list<Teacher>& teachers, std::list<Group>& froups);
 
+void SerialiseInJson(University& university, nlohmann::json& rectorJson, nlohmann::json groupsJson, nlohmann::json teachersJson);
+void DeserialiseFromJson(University& university, nlohmann::json& rectorJson, nlohmann::json groupsJson, nlohmann::json teachersJson);
+
 int main()
 {
-
-
 	University university;
 
 	university.GetRector().SetName("rector");
@@ -41,12 +43,6 @@ int main()
 			{
 				system("cls");
 				user.AddTeacherInUniversity(university.GetTeachers());
-			}
-			break;
-			case UserChoice::AddTeacherForGroup:
-			{
-				system("cls");
-				user.AddTeacherForGroup(university.GetGroups(), university.GetTeachers());
 			}
 			break;
 			case UserChoice::AddStudentInGroup:
@@ -231,6 +227,13 @@ int main()
 	default:
 		break;
 	}
+
+	nlohmann::json rectorJson;
+	nlohmann::json groupsJson;
+	nlohmann::json teachersJson;
+
+	SerialiseInJson(university, rectorJson, groupsJson, teachersJson);
+
 }
 
 std::pair<Profession, unsigned> LogIn(Rector& rector, std::list<Teacher>& teachers, std::list<Group>& groups) 
@@ -270,3 +273,28 @@ std::pair<Profession, unsigned> LogIn(Rector& rector, std::list<Teacher>& teache
 	}
 }
 
+void SerialiseInJson(University& university, nlohmann::json& rectorJson, nlohmann::json groupsJson, nlohmann::json teachersJson)
+{
+	university.to_json(rectorJson, groupsJson, teachersJson);
+	
+	std::ofstream rectorFile("Rector.json");
+
+	rectorFile << rectorJson.dump();
+	rectorFile.close();
+
+	std::ofstream groupsFile("Groups.json");
+
+	groupsFile << groupsJson.dump();
+	groupsFile.close();
+
+	std::ofstream teachersFile("Teachers.json");
+
+	teachersFile << teachersJson.dump();
+	teachersFile.close();
+}
+
+void DeserialiseFromJson(University& university, nlohmann::json& rectorJson, nlohmann::json groupsJson, nlohmann::json teachersJson)
+{
+	
+
+}

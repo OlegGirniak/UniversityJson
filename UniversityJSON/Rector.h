@@ -1,5 +1,6 @@
 #pragma once
 #include "Person.h"
+#include "nlohmann/json.hpp"
 #include <list>
 
 class Student;
@@ -14,7 +15,6 @@ public:
 	//add methods
 	void AddGroup(std::list<Group>& groups);
 	void AddTeacherInUniversity(std::list<Teacher>& teachers);
-	void AddTeacherForGroup(std::list<Group>& groups, std::list<Teacher>& teachers);
 	void AddGroupForTeacher(std::list<Teacher>& teachers, std::list<Group>& groups);
 	void AddStudentInGroup(std::list<Group>& groups);
 	void AddMarkForStudent(std::list<Group>& groups);
@@ -31,7 +31,13 @@ public:
 	void ShowStudentInformationById(std::list<Group>& groups);
 	void ShowTeacherInformationById(std::list<Teacher>& teachers);
 
+
+	//user interface
 	UserChoice Menu();
 
+
+	//Json parsers
+	void to_json(nlohmann::json& j);
+	void from_json(nlohmann::json j);
 };
 

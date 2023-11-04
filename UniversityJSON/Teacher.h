@@ -1,5 +1,6 @@
 #pragma once
 #include "Person.h"
+#include "nlohmann/json.hpp"
 #include <list>
 
 class Group;
@@ -29,5 +30,8 @@ public:
 	{
 		return teacher.id == other.id;
 	}
+
+	void to_json(nlohmann::json& j);
+	void from_json(nlohmann::json& j);
 };
 

@@ -17,8 +17,7 @@ public:
 	std::list<Group>& GetGroups() { return groups; }
 	std::list<Teacher>& GetTeachers() { return teachers; }
 
-	void to_json(nlohmann::json& rectorJson, nlohmann::json& groupsJson, nlohmann::json& teachersJson);
-
-	void from_json(nlohmann::json& rectorJson, nlohmann::json& groupsJson, nlohmann::json& teachersJson);
+	nlohmann::json to_json();
+	void from_json(nlohmann::json& universityJson);
 };
 

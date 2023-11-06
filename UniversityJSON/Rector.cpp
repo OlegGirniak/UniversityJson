@@ -399,20 +399,23 @@ UserChoice Rector::Menu()
 	}
 }
 
-void Rector::to_json(nlohmann::json& j)
+nlohmann::json Rector::to_json()
 {
-	j = nlohmann::json{
-		{"name", name},
-		{"password", password},
-		{"id", id}
-	};
+	nlohmann::json rectorJson;
+
+	rectorJson["name"] = name;
+	rectorJson["password"] = password;
+	rectorJson["id"] = id;
+	
+	return rectorJson;
 }
 
-void Rector::from_json(nlohmann::json j)
+void Rector::from_json(nlohmann::json& rectorJson)
 {
-	id = j["rector"][0]["id"];
-	name = j["rector"][0]["name"];
-	password = j["rector"][0]["password"];
-} 
+	name = rectorJson["name"];
+	password = rectorJson["password"];
+	id = rectorJson["id"];
+}
+
 
 

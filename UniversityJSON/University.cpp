@@ -1,52 +1,40 @@
 #include "University.h"
 
-void University::to_json(nlohmann::json& rectorJson, nlohmann::json& groupsJson, nlohmann::json& teachersJson)
+nlohmann::json University::to_json()
 {
-	//rector
-	rectorJson = nlohmann::json{
-		{"rector", nlohmann::json::array()}
-	};
-	nlohmann::json tmpRectorJson;
-	rector.to_json(tmpRectorJson);
-	rectorJson["rector"].push_back(tmpRectorJson);
+    nlohmann::json universityJson;
+    universityJson["rector"] = rector.to_json();
 
-	//groups
-	groupsJson = nlohmann::json{
-		{"groups", nlohmann::json::array()}
-	};
-	for (auto& group : groups)
-	{
-		nlohmann::json groupJson;
-		group.to_json(groupJson);
-		groupsJson["groups"].push_back(groupJson);
-	}
+    for (Teacher& teacher : teachers)
+    {
+        universityJson["teachers"].push_back(teacher.to_json());
+    }
 
-	//teachers
-	teachersJson = nlohmann::json{
-		{"teachers", nlohmann::json::array()}
-	};
-	for (auto& teacher : teachers)
-	{
-		nlohmann::json teacherJson;
-		teacher.to_json(teacherJson);
-		teachersJson["teachers"].push_back(teacherJson);
-	}
+    for (Group& group : groups)
+    {
+        universityJson["groups"].push_back(group.to_json());
+    }
+
+    return universityJson;
 }
 
-void University::from_json(nlohmann::json& rectorJson, nlohmann::json& groupsJson, nlohmann::json& teachersJson)
-{	
-	rector.from_json(rectorJson);
+void University::from_json(nlohmann::json& universityJson)
+{
+    rector.from_json(universityJson["rector"]);
 
-	int indexOfGroup = 0;
-	for (auto& groupJson : groupsJson["groups"])
-	{
-		Group group;
-		group.from_json(groupJson, indexOfGroup++);
-		groups.push_back(group);
-	}
+    teachers.clear();
+    for (auto& teacherJson : universityJson["teachers"])
+    {
+        Teacher teacher;
+        teacher.from_json(teacherJson);
+        teachers.push_back(teacher);
+    }
 
-	int indexOfTeachers;
-
-
+    groups.clear(); 
+    for (auto& groupJson : universityJson["groups"])
+    {
+        Group group;
+        group.from_json(groupJson);
+        groups.push_back(group);
+    }
 }
-

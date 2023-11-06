@@ -24,7 +24,7 @@ public:
 		return other1.id == other2.id;
 	}
 
-	void to_json(nlohmann::json& j);
-	void from_json(nlohmann::json& j);
+	nlohmann::json to_json();
+	void from_json(nlohmann::json& studentJson);
 };
 

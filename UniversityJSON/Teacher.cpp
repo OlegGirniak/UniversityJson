@@ -162,25 +162,31 @@ UserChoice Teacher::Menu()
 	}
 }
 
-void Teacher::to_json(nlohmann::json& teachersJson)
+nlohmann::json Teacher::to_json()
 {
-	teachersJson = nlohmann::json{
-		{"id", id},
-		{"name", name},
-		{"password", password},
-		{"groups", nlohmann::json::array()}
-	};
-	for (auto& group : groups)
-	{
-		nlohmann::json groupJson;
-		group.to_json(groupJson);
-		teachersJson["groups"].push_back(groupJson);
-	}
+	nlohmann::json teacherJson;
 
+	teacherJson["name"] = name;
+	teacherJson["password"] = password;
+	teacherJson["id"] = id;
+	for (Group& group : groups)
+	{
+		teacherJson["groups"].push_back(group.to_json());
+	}
+	return teacherJson;
 }
 
-
-void Teacher::from_json(nlohmann::json& j)
+void Teacher::from_json(nlohmann::json& teacherJson)
 {
-	
+	name = teacherJson["name"];
+	password = teacherJson["password"];
+	id = teacherJson["id"];
+
+	groups.clear();
+	for (auto& groupJson : teacherJson["groups"])
+	{
+		Group group;
+		group.from_json(groupJson);
+		groups.push_back(group);
+	}
 }

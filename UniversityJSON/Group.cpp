@@ -27,27 +27,25 @@ void Group::ShowInfo()
 	}
 }
 
-void Group::to_json(nlohmann::json& j)
+nlohmann::json Group::to_json()
 {
-	j = nlohmann::json{
-		{"id", id},
-		{"students", nlohmann::json::array()}
-	};
+	nlohmann::json groupJson;
 
-	for (auto& student : students)
+	groupJson["id"] = id;
+	for (Student& student : students)
 	{
-		nlohmann::json studentJson;
-		student.to_json(studentJson);
-		j["students"].push_back(studentJson);
+		groupJson["students"].push_back(student.to_json());
 	}
 
+	return groupJson;
 }
 
-void Group::from_json(nlohmann::json& j, int indexOfgroup)
+void Group::from_json(nlohmann::json& groupJson)
 {
-	id = j["groups"][indexOfgroup]["id"];
-
-	for (auto& studentJson : j["groups"][indexOfgroup]["students"]) {
+	id = groupJson["id"];
+	students.clear(); 
+	for (auto& studentJson : groupJson["students"])
+	{
 		Student student;
 		student.from_json(studentJson);
 		students.push_back(student);

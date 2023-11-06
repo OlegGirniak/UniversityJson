@@ -54,22 +54,23 @@ UserChoice Student::Menu()
 	}
 }
 
-void Student::to_json(nlohmann::json& j)
+nlohmann::json Student::to_json()
 {
-	j = nlohmann::json{
-		{"name", name},
-		{"password", password},
-		{"id", id},
-		{"marks", marks}
-	};
+	nlohmann::json studentJson;
+	studentJson["name"] = name;
+	studentJson["password"] = password;
+	studentJson["id"] = id;
+	studentJson["marks"] = marks;
+
+	return studentJson;
 }
 
-void Student::from_json(nlohmann::json& j)
+void Student::from_json(nlohmann::json& studentJson)
 {
-	j.at("name").get_to(name);
-	j.at("password").get_to(password);
-	j.at("id").get_to(id);
-	j.at("marks").get_to(marks);
+	name = studentJson["name"];
+	password = studentJson["password"];
+	id = studentJson["id"];
+	marks = studentJson["marks"].get<std::list<int>>();
 }
 
 

@@ -6,17 +6,14 @@
 
 std::pair<Profession, unsigned> LogIn(Rector& rector, std::list<Teacher>& teachers, std::list<Group>& froups);
 
-void SerialiseInJson(University& university, nlohmann::json& rectorJson, nlohmann::json groupsJson, nlohmann::json teachersJson);
-void DeserialiseFromJson(University& university, nlohmann::json& rectorJson, nlohmann::json groupsJson, nlohmann::json teachersJson);
+nlohmann::json SerialiseInJson(University& university, std::string file);
+void DeserialiseFromJson(University& university, std::string file);
 
 int main()
 {
 	University university;
 
-	university.GetRector().SetName("rector");
-	university.GetRector().SetPassword("111");
-	university.GetRector().SetId(1);
-
+	DeserialiseFromJson(university, "Main.json");
 
 	std::pair<Profession, unsigned> userData = LogIn(university.GetRector(), university.GetTeachers(), university.GetGroups());
 
@@ -228,11 +225,7 @@ int main()
 		break;
 	}
 
-	nlohmann::json rectorJson;
-	nlohmann::json groupsJson;
-	nlohmann::json teachersJson;
-
-	SerialiseInJson(university, rectorJson, groupsJson, teachersJson);
+	SerialiseInJson(university, "Main.json");
 
 }
 
@@ -273,28 +266,24 @@ std::pair<Profession, unsigned> LogIn(Rector& rector, std::list<Teacher>& teache
 	}
 }
 
-void SerialiseInJson(University& university, nlohmann::json& rectorJson, nlohmann::json groupsJson, nlohmann::json teachersJson)
+nlohmann::json SerialiseInJson(University& university, std::string file)
 {
-	university.to_json(rectorJson, groupsJson, teachersJson);
-	
-	std::ofstream rectorFile("Rector.json");
+	nlohmann::json universityJson = university.to_json();
 
-	rectorFile << rectorJson.dump();
-	rectorFile.close();
+	std::ofstream fileJson(file);
 
-	std::ofstream groupsFile("Groups.json");
+	fileJson << universityJson.dump();
 
-	groupsFile << groupsJson.dump();
-	groupsFile.close();
-
-	std::ofstream teachersFile("Teachers.json");
-
-	teachersFile << teachersJson.dump();
-	teachersFile.close();
+	return universityJson;
 }
 
-void DeserialiseFromJson(University& university, nlohmann::json& rectorJson, nlohmann::json groupsJson, nlohmann::json teachersJson)
+void DeserialiseFromJson(University& university, std::string file)
 {
-	
+	std::ifstream fileJson(file);
+	std::string jsonStr;
 
+	fileJson >> jsonStr;
+	nlohmann::json universityJson = nlohmann::json::parse(jsonStr);
+	
+	university.from_json(universityJson);
 }

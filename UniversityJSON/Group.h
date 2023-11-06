@@ -27,8 +27,8 @@ public:
 		return group.id == other.id;
 	}
 
-	void to_json(nlohmann::json& j);
-	void from_json(nlohmann::json& j, int indexOfGroup);
+	nlohmann::json to_json();
+	void from_json(nlohmann::json& groupJson);
 };
 
 

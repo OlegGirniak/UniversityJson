@@ -23,7 +23,7 @@ void Teacher::AddMarkForStudent()
 	std::cout << "\t + Mark is added.\n";
 }
 
-void Teacher::AddGroup(Group newGroup)
+void Teacher::AddGroup(Group& newGroup)
 {
 	groups.push_back(newGroup);
 }
@@ -125,39 +125,31 @@ void Teacher::ShowInfo()
 
 UserChoice Teacher::Menu()
 {
-	std::cout << " __TEACHER__MENU__\n";
+	std::cout << " _TEACHER_MENU_\n";
 
-	std::cout << "1 - Show group information.\n2 - Show group information\n3 - Show student information\n4 - Delete mark.\n5 - Exit\n";
+	UserChoice teacherChoices[] =
+	{
+		UserChoice::ShowGroupInformation,
+		UserChoice::ShowStudentInformation,
+		UserChoice::AddMarkForStudent,
+		UserChoice::DeleteMarkForStudent,
+		UserChoice::LogOut
+	};
 
 	while (true)
 	{
+		std::wcout << "1 - Show group info.\n2 - Show student info.\n3 - Add mark.\n4 - Delete mark.\n5 - Log out.\n"; 
 		std::cout << "-> Enter choice: ";
 		int userChoice;
 		std::cin >> userChoice;
 
-		if (userChoice == 1)
+		if (userChoice >= 1 && userChoice <= 5)
 		{
-			return UserChoice::ShowGroupInformationById;
-		}
-		else if (userChoice == 2) 
-		{
-			return UserChoice::ShowGroupInformationById;
-		}
-		else if (userChoice == 3)
-		{
-			return UserChoice::ShowStudentInformationById;
-		}
-		else if (userChoice == 4)
-		{
-			return UserChoice::DeleteMarkForStudent;
-		}
-		else if (userChoice == 5)
-		{
-			return UserChoice::Exit;
+			return teacherChoices[userChoice];
 		}
 		else
 		{
-			std::cout << "-! Wrong choice, enter again\n";
+			std::cout << "- Wrong choice, enter again\n";
 		}
 	}
 }

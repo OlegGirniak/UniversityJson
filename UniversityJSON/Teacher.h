@@ -16,7 +16,7 @@ public:
 	std::list<Group>& GetGroups() { return groups; }
 
 	void AddMarkForStudent();
-	void AddGroup(Group newGroup);
+	void AddGroup(Group& newGroup);
 
 	void ShowStudentInformation();
 	void ShowGroupInformation();

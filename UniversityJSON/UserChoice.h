@@ -2,19 +2,29 @@
 
 enum class UserChoice
 {
+	// add
 	AddGroup = 1,
-	AddTeacherInUniversity,
-	AddTeacherForGroup,
+	AddTeacher,
 	AddStudentInGroup,
 	AddMarkForStudent,
+	AddGroupforTeacher,
+
+	//show
 	ShowAllInformation,
-	ShowGroupInformationById,
-	ShowTeacherInformationById,
-	ShowStudentInformationById,
+	ShowGroupInformation,
+	ShowStudentInformation,
+	ShowTeacherInformation,
+
+	//delete
 	DeleteGroup,
 	DeleteTeacher,
 	DeleteStudent,
 	DeleteMarkForStudent,
-	Exit
+
+	//change
+	ChangePassword,
+	ChangeName,
+
+	LogOut
 };
 

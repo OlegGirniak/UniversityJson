@@ -111,11 +111,11 @@ void Rector::AddGroupForTeacher(std::list<Teacher>& teachers, std::list<Group>& 
 {
 	if (teachers.empty() || groups.empty())
 	{
-		std::cout << "-! Teachers or groups is empty.\n ";
+		std::cout << " - Teachers or groups is empty.\n ";
 	}
 	else
 	{
-		std::cout << "\t-> Chooce teacher: \n";
+		std::cout << "-> Chooce teacher: \n";
 		auto teacher = GetTeacherById(teachers);
 		
 
@@ -123,7 +123,7 @@ void Rector::AddGroupForTeacher(std::list<Teacher>& teachers, std::list<Group>& 
 		{
 			bool ifGroupExists = false;
 
-			std::cout << "\t-> Chooce group: \n";
+			std::cout << "-> Chooce group: \n";
 
 			auto group = GetGroupById(groups);
 
@@ -138,11 +138,8 @@ void Rector::AddGroupForTeacher(std::list<Teacher>& teachers, std::list<Group>& 
 
 			if (ifGroupExists)
 			{
-				std::cout << "\t-! Group exists, enter again, if press 1 to exit or 2 to continue.\n";
-				int ifExit;
-				std::cin >> ifExit;
-				if (ifExit == 1)
-					return;
+				std::cout << "- Group exists, enter again, if press 1 to exit or 2 to continue.\n";
+				return;
 			}
 			else
 			{
@@ -374,13 +371,67 @@ void Rector::ShowTeacherInformationById(std::list<Teacher>& teachers)
 	}
 }
 
+void Rector::ChangePassword()
+{
+	std::cout << "_CHANGE_PASSWORD_\n";
+	
+	while (true)
+	{
+		std::cout << "->Enter old password: ";
+		std::string tmpPassword;
+		std::cin >> tmpPassword;
+
+		if (tmpPassword == password)
+		{
+			tmpPassword.clear();
+			std::cout << "->Enter new password: ";
+			std::cin >> tmpPassword;
+			password = tmpPassword;
+			std::cout << " + Password is changed.\n";
+			return;
+		}
+		else
+		{
+			std::cout << " - Wrong password, enter again.\n";
+		}
+	}
+}
+
+void Rector::ChangeName()
+{
+	std::cout << "_CHANGE_NAME_\n";
+
+	while (true)
+	{
+		std::cout << "->Enter password: ";
+		std::string tmpPassword;
+		std::cin >> tmpPassword;
+
+		if (tmpPassword == password)
+		{
+			tmpPassword.clear();
+			std::cout << "->Enter new name: ";
+			std::string newName;
+			std::cin >> newName;
+			password = newName;
+			std::cout << " + Name is changed.\n";
+			return;
+		}
+		else
+		{
+			std::cout << " - Wrong password, enter again.\n";
+		}
+	}
+}
+
 UserChoice Rector::Menu()
 {
-	std::cout << " __RECTOR__MENU__\n";
+	std::cout << " _RECTOR_MENU_\n";
 
-	std::cout << "1 - Add groups in university.\n2 - Add teacher in university.\n3 - Add teacher for group.\n4 - Add student in group.\n5 - Add mark for student.\n";
-	std::cout << "6 - Show all information.\n7 - Show group information.\n8 - Show teachers information.\n9 - Show students information.\n";
-	std::cout << "10 - Delete group.\n11 - Delete teachers.\n12 - Delete student.\n13 - Delete mark.\n14 - Exit.\n";
+	std::cout << " - ADDING - \n1 - Add group.\n2 - Add teacher.\n3 - Add student.\n4 - Add mark.\n5 - Add group for teacher.\n";
+	std::cout << "6 - Show university info.\n7 - Show group info.\n8 - Show student info.\n9 - Show teacher info.\n";
+	std::cout << "10 - Delete group.\n11 - Delete teacher.\n12 - Delete student.\n13 - Delete mark.\n";
+	std::cout << "14 - Change password.\n15 - Change name.\n16 - Log out\n";
 
 	while (true)
 	{
@@ -388,7 +439,7 @@ UserChoice Rector::Menu()
 		int userChoice;
 		std::cin >> userChoice;
 
-		if (userChoice > 0 && userChoice < 15)
+		if (userChoice >= 1 && userChoice <= 16)
 		{
 			return static_cast<UserChoice>(userChoice);
 		}

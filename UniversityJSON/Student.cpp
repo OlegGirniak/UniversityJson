@@ -29,27 +29,28 @@ void Student::AddMarks(unsigned mark)
 
 UserChoice Student::Menu()
 {
-	std::cout << " __TEACHER__MENU__\n";
+	std::cout << " _STUDENT_MENU_\n";
 
-	std::cout << "1 - Show information.\n2 - Exit\n";
+	UserChoice teacherChoices[] =
+	{
+		UserChoice::ShowStudentInformation,
+		UserChoice::LogOut
+	};
 
 	while (true)
 	{
+		std::wcout << "1 - Show student info.\n2 - Log out.\n";
 		std::cout << "-> Enter choice: ";
 		int userChoice;
 		std::cin >> userChoice;
 
-		if (userChoice == 1)
+		if (userChoice >= 1 && userChoice <= 2)
 		{
-			return UserChoice::ShowStudentInformationById;
-		}
-		else if (userChoice == 2)
-		{
-			return UserChoice::Exit;
+			return teacherChoices[userChoice];
 		}
 		else
 		{
-			std::cout << "-! Wrong choice, enter again\n";
+			std::cout << "- Wrong choice, enter again\n";
 		}
 	}
 }

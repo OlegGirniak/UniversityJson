@@ -31,6 +31,10 @@ public:
 	void ShowStudentInformationById(std::list<Group>& groups);
 	void ShowTeacherInformationById(std::list<Teacher>& teachers);
 
+	//Change methods
+	void ChangePassword();
+	void ChangeName();
+
 
 	//user interface
 	UserChoice Menu();

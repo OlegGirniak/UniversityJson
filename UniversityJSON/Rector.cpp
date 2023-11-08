@@ -413,7 +413,7 @@ void Rector::ChangeName()
 			std::cout << "->Enter new name: ";
 			std::string newName;
 			std::cin >> newName;
-			password = newName;
+			name = newName;
 			std::cout << " + Name is changed.\n";
 			return;
 		}

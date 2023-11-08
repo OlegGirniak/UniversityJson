@@ -17,7 +17,7 @@ int main()
 
 	while (true)
 	{
-		std::cout << "1 - Log In\n 2 - Exit\nEnter choice: ";
+		std::cout << "1 - Log In\n2 - Exit\nEnter choice: ";
 		int userChoice;
 		std::cin >> userChoice;
 
@@ -115,13 +115,78 @@ int main()
 				break;
 				case Profession::Teacher:
 				{
-					std::cout << "teacher";
+					Teacher& user = *(university.GetTeachers().begin());
+
+					for (auto& teacher : university.GetTeachers())
+					{
+						if (teacher.GetId() == userData.second)
+						{
+							user = teacher;
+							break;
+						}
+					}
+
+					switch (user.Menu())
+					{
+					case UserChoice::AddMarkForStudent:
+						user.AddMarkForStudent();
+
+						break;
+					
+					case UserChoice::ShowGroupInformation:
+						user.ShowGroupInformation();
+
+						break;
+
+					case UserChoice::ShowStudentInformation:
+						user.ShowStudentInformation();
+
+						break;
+					
+					case UserChoice::DeleteMarkForStudent:
+						user.DeleteMarkForStudent();
+						break;
+					
+					case UserChoice::LogOut:
+						ifLogOut = true;
+						break;
+					default:
+						break;
+					}
+
 				}
 
 				break;
 				case Profession::Student:
 				{
-					std::cout << "student";
+					Group& userGroup = *(university.GetGroups().begin());
+					Student& user = *(userGroup.GetStudents().begin());
+
+					for (auto& group : university.GetGroups())
+					{
+						for (auto& student : group.GetStudents())
+						{
+							if (student.GetId() == userData.second)
+							{
+								userGroup = group;
+								user = student;
+								break;
+							}
+						}
+					}
+
+					switch (user.Menu())
+					{
+					case UserChoice::ShowStudentInformation:
+						user.ShowInfo();
+						break;
+
+					case UserChoice::LogOut:
+						ifLogOut = true;
+						break;
+					default:
+						break;
+					}
 				}
 
 				break;
@@ -142,7 +207,7 @@ int main()
 		}
 	}
 
-	//SerialiseInJson(university, "Main.json");
+	SerialiseInJson(university, "Main.json");
 
 }
 
@@ -208,214 +273,3 @@ void DeserialiseFromJson(University& university, std::string file)
 
 
 
-/*
-std::pair<Profession, unsigned> userData = LogIn(university.GetRector(), university.GetTeachers(), university.GetGroups());
-
-	switch (userData.first)
-	{
-	case Profession::Rector:
-	{
-		Rector& user = university.GetRector();
-
-		bool ifExit = false;
-
-		while (!ifExit)
-		{
-
-			switch (user.Menu())
-			{
-			case UserChoice::AddGroup:
-			{
-				system("cls");
-				user.AddGroup(university.GetGroups());
-			}
-			break;
-			case UserChoice::AddTeacherInUniversity:
-			{
-				system("cls");
-				user.AddTeacherInUniversity(university.GetTeachers());
-			}
-			break;
-			case UserChoice::AddStudentInGroup:
-			{
-				system("cls");
-				user.AddStudentInGroup(university.GetGroups());
-			}
-			break;
-			case UserChoice::AddMarkForStudent:
-			{
-				system("cls");
-				user.AddMarkForStudent(university.GetGroups());
-			}
-			break;
-			case UserChoice::ShowAllInformation:
-			{
-				system("cls");
-				user.ShowAllInformation(university.GetGroups(), university.GetTeachers());
-			}
-			break;
-			case UserChoice::ShowGroupInformationById:
-			{
-				system("cls");
-				user.ShowGroupInformationById(university.GetGroups());
-			}
-			break;
-			case UserChoice::ShowTeacherInformationById:
-			{
-				system("cls");
-				user.ShowTeacherInformationById(university.GetTeachers());
-			}
-			break;
-			case UserChoice::ShowStudentInformationById:
-			{
-				system("cls");
-				user.ShowStudentInformationById(university.GetGroups());
-			}
-			break;
-			case UserChoice::DeleteGroup:
-			{
-				system("cls");
-				user.DeleteGroup(university.GetGroups());
-			}
-			break;
-			case UserChoice::DeleteTeacher:
-			{
-				system("cls");
-				user.DeleteTeacher(university.GetTeachers(), university.GetGroups());
-			}
-			break;
-			case UserChoice::DeleteStudent:
-			{
-				system("cls");
-				user.DeleteStudent(university.GetGroups());
-			}
-			break;
-			case UserChoice::DeleteMarkForStudent:
-			{
-				system("cls");
-				user.DeleteMarkForStudent(university.GetGroups());
-			}
-			break;
-			case UserChoice::Exit:
-			{
-				ifExit = true;
-			}
-			break;
-			default:
-			{
-				std::cout << "Something get wrong\n";
-			}
-				break;
-			}
-		}
-	}
-	break;
-
-	case Profession::Teacher:
-	{
-		Teacher& user = *(university.GetTeachers().begin());
-
-		for (auto teacher = university.GetTeachers().begin(); teacher != university.GetTeachers().end(); teacher++)
-		{
-			if (userData.second == (*teacher).GetId())
-			{
-				user = *teacher;
-				break;
-			}
-		}
-
-		bool ifExit = false;
-
-		while (!ifExit)
-		{
-			switch (user.Menu())
-			{
-
-			case UserChoice::AddMarkForStudent:
-			{
-				system("cls");
-				user.AddMarkForStudent();
-			}
-			break;
-
-			case UserChoice::ShowGroupInformationById:
-			{
-				system("cls");
-				user.ShowGroupInformation();
-			}
-			break;
-
-			case UserChoice::ShowStudentInformationById:
-			{
-				system("cls");
-				user.ShowStudentInformation();
-			}
-			break;
-
-			case UserChoice::DeleteMarkForStudent:
-			{
-				system("cls");
-				user.DeleteMarkForStudent();
-			}
-			break;
-			case UserChoice::Exit:
-			{
-				ifExit = true;
-			}
-			break;
-			default:
-			{
-				std::cout << "Something get wrong\n";
-			}
-			break;
-			}
-		}
-	}
-	break;
-	case Profession::Student:
-	{
-		auto group = (university.GetGroups().begin());
-		Student& user = *((*group).GetStudents().begin());
-
-		for (auto group = university.GetGroups().begin(); group != university.GetGroups().end(); group++)
-		{
-			for (auto student = (*group).GetStudents().begin(); student != (*group).GetStudents().end(); student++)
-			{
-				if (userData.second == (*student).GetId())
-				{
-					 user = *student;
-				}
-			}
-		}
-
-		bool ifExit = false;
-
-		while (!ifExit)
-		{
-			switch (user.Menu())
-			{
-
-			case UserChoice::ShowStudentInformationById:
-			{
-				user.ShowInfo();
-			}
-			break;
-
-			case UserChoice::Exit:
-			{
-				ifExit = true;
-			}
-			break;
-			default:
-			{
-				std::cout << "Something get wrong\n";
-			}
-			break;
-			}
-		}
-	}
-	break;
-	default:
-		break;
-	}
-*/

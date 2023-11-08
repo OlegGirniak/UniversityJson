@@ -46,7 +46,7 @@ UserChoice Student::Menu()
 
 		if (userChoice >= 1 && userChoice <= 2)
 		{
-			return teacherChoices[userChoice];
+			return teacherChoices[--userChoice];
 		}
 		else
 		{

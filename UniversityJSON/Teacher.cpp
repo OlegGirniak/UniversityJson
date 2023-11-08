@@ -145,7 +145,7 @@ UserChoice Teacher::Menu()
 
 		if (userChoice >= 1 && userChoice <= 5)
 		{
-			return teacherChoices[userChoice];
+			return teacherChoices[--userChoice];
 		}
 		else
 		{
